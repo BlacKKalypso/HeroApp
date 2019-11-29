@@ -7,11 +7,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.crea.heroapp.R;
 import com.crea.heroapp.activities.MainActivity;
+import com.crea.heroapp.fragments.ProfileHeroFragment;
 import com.crea.heroapp.models.Hero;
+import com.crea.heroapp.utils.UtilNavigationFragment;
 
 import java.util.ArrayList;
 
@@ -19,9 +23,11 @@ public class HeroRecyclerAdpater extends RecyclerView.Adapter<HeroRecyclerAdpate
 
 
     private ArrayList<Hero> heros;
+    private FragmentActivity context;
 
-    public HeroRecyclerAdpater(ArrayList<Hero> heros) {
+    public HeroRecyclerAdpater(ArrayList<Hero> heros, FragmentActivity context) {
         this.heros = heros;
+        this.context = context;
     }
 
     @NonNull
@@ -64,4 +70,8 @@ public class HeroRecyclerAdpater extends RecyclerView.Adapter<HeroRecyclerAdpate
         }
     }
 
+    private void goToHeroInfoFragmentById(Hero hero){
+        ProfileHeroFragment profileHeroFragment = new ProfileHeroFragment(hero);
+        UtilNavigationFragment.nextFragment(profileHeroFragment, this.context);
+    }
 }

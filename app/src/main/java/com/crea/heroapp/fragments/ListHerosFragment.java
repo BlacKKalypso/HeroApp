@@ -83,7 +83,7 @@ public class ListHerosFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         // CustomAdapter
-        recyclerView.setAdapter(new HeroRecyclerAdpater(heros));
+        recyclerView.setAdapter(new HeroRecyclerAdpater(heros, this.getActivity()));
         recyclerView.getAdapter().notifyDataSetChanged();
     }
 

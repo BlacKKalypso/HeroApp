@@ -15,5 +15,6 @@ class Hero {
     var power: String? = null
     @ColumnInfo(name = "url")
     var url: String? = null
+    var image: String? = null
 
 }

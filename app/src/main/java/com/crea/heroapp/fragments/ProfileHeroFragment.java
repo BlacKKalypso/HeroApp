@@ -9,15 +9,19 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.crea.heroapp.R;
+import com.crea.heroapp.models.Hero;
+import com.squareup.picasso.Picasso;
 
 public class ProfileHeroFragment extends Fragment {
 
-    private String selectedHero;
+    private Hero hero;
 
-    public ProfileHeroFragment(String selectedHero) {
-        this.selectedHero = selectedHero;
+    public ProfileHeroFragment(Hero hero) {
+        this.hero = hero;
     }
 
     @Nullable
@@ -31,10 +35,18 @@ public class ProfileHeroFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        heroDetail();
-    }
+        TextView nomHero = view.findViewById(R.id.textViewHeroName);
+        nomHero.setText((hero.getName()));
 
-    private void heroDetail(){
+        TextView idHero = view.findViewById(R.id.textViewHeroId);
+        idHero.setText("Id Hero: ");
+        idHero.append(Long.toString(hero.getId()));
 
+        TextView powerHero = view.findViewById(R.id.textViewHeroPower);
+        powerHero.setText("Hero power: ");
+        powerHero.append(hero.getPower());
+
+        ImageView imageHero = view.findViewById(R.id.imageViewHeroProfile);
+        Picasso.get().load(hero.getImage()).into(imageHero);
     }
 }
